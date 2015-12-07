@@ -67,30 +67,65 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Timer = (function (_React$Component) {
-	  _inherits(Timer, _React$Component);
+	var Timer = _react2.default.createClass({
+	  displayName: "Timer",
 	
-	  function Timer(props) {
-	    _classCallCheck(this, Timer);
+	  getInitialState: function getInitialState() {
+	    return { remainingSeconds: this.props.startingSeconds };
+	  },
+	  startTimer: function startTimer() {
+	    var delta = 1;
+	    var intervalId = setInterval((function () {
+	      if (!this.state.running) {
+	        return;
+	      }
+	      if (this.state.remainingSeconds === 0 || this.state.remainingSeconds === this.props.startingSeconds) {
+	        delta = -1 * delta;
+	      }
+	      this.setState({ remainingSeconds: this.state.remainingSeconds + delta });
+	    }).bind(this), 1000);
+	    this.intervalId = intervalId;
+	    console.log("started timer");
+	    this.setState({ running: true });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.startTimer();
+	  },
+	  handleClick: function handleClick(e) {
+	    e.preventDefault();
+	    console.log("clicked", e.target);
+	    console.log(this.state);
+	    this.setState({ running: !this.state.running });
+	    //this.setState( {remainingSeconds:  0} );
+	  },
 	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Timer).call(this, props));
+	  render: function render() {
+	    return _react2.default.createElement(
+	      "div",
+	      { onClick: this.handleClick },
+	      this.state.remainingSeconds
+	    );
+	  }
+	});
 	
-	    _this.state = { remainingSeconds: _this.props.startingSeconds };
+	var App = (function (_React$Component) {
+	  _inherits(App, _React$Component);
+	
+	  function App(props) {
+	    _classCallCheck(this, App);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+	
+	    _this.state = { timers: [5, 99, 42, 10] };
 	    return _this;
 	  }
 	
-	  _createClass(Timer, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      var delta = 1;
-	      var intervalId = setInterval(function () {
-	        if (_this2.state.remainingSeconds === 0 || _this2.state.remainingSeconds === _this2.props.startingSeconds) {
-	          delta = -1 * delta;
-	        }
-	        _this2.setState({ remainingSeconds: _this2.state.remainingSeconds + delta });
-	      }, 1000);
+	  _createClass(App, [{
+	    key: "content",
+	    value: function content() {
+	      return this.state.timers.map(function (seconds, i) {
+	        return _react2.default.createElement(Timer, { startingSeconds: seconds, key: i });
+	      });
 	    }
 	  }, {
 	    key: "render",
@@ -98,31 +133,7 @@
 	      return _react2.default.createElement(
 	        "div",
 	        null,
-	        this.state.remainingSeconds
-	      );
-	    }
-	  }]);
-	
-	  return Timer;
-	})(_react2.default.Component);
-	
-	var App = (function (_React$Component2) {
-	  _inherits(App, _React$Component2);
-	
-	  function App() {
-	    _classCallCheck(this, App);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
-	  }
-	
-	  _createClass(App, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        _react2.default.createElement(Timer, { startingSeconds: 5 }),
-	        _react2.default.createElement(Timer, { startingSeconds: 99 })
+	        this.content()
 	      );
 	    }
 	  }]);
