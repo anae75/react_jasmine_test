@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 var Player = require('../../../public/javascripts/jasmine_examples/player');
 var Song = require('../../../public/javascripts/jasmine_examples/song');
@@ -31,10 +32,17 @@ describe("AnaTesting", function() {
     expect(component.isRunning()).toEqual(true);
 
     // simulate a click which should stop the timer
-    //ReactTestUtils.Simulate.click(component);
-    component.handleClick(elem);
-    console.log(this.elem);
+    var renderedDOM = () => ReactDOM.findDOMNode(component);
+    var domElem = renderedDOM();
+    expect(domElem.tagName).toEqual("DIV");
+
+    ReactTestUtils.Simulate.click(domElem);
     expect(component.isRunning()).toEqual(false);
+
+    // now call handleClick directly
+    component.handleClick(elem);
+    expect(component.isRunning()).toEqual(true);
+
   });
 
 });
