@@ -27,7 +27,7 @@ let Timer = React.createClass({
     return this.state.running;
   },
   handleClick(e) {
-    e.preventDefault();
+    //e.preventDefault();
     console.log("clicked", e.target);
     console.log(this.state);
     this.setState({running:  !this.state.running});

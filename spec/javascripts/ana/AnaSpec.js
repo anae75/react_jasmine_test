@@ -22,4 +22,19 @@ describe("AnaTesting", function() {
     expect(component.isRunning()).toEqual(true);
   });
 
+
+  it("should be able to stop and start the timer", function() {
+    var elem = null;
+    var component = ReactTestUtils.renderIntoDocument(<Timer ref={function(e) {elem = e;}} startingSeconds={100} />);
+
+    // timer is running by default
+    expect(component.isRunning()).toEqual(true);
+
+    // simulate a click which should stop the timer
+    //ReactTestUtils.Simulate.click(component);
+    component.handleClick(elem);
+    console.log(this.elem);
+    expect(component.isRunning()).toEqual(false);
+  });
+
 });
