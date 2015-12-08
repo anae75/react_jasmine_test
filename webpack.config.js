@@ -1,9 +1,12 @@
 module.exports = {
-  entry: "./public/script.js",
+  entry: {
+    bundle: "./public/script.js",
+    test_bundle: "./spec/javascripts/specRoot.js"
+  },
 
   output: {
     path: __dirname + "/public",
-    filename: "bundle.js"
+    filename: "[name].js"
   },
 
   module: {
