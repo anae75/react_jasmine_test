@@ -23,6 +23,9 @@ let Timer = React.createClass({
   componentDidMount: function() {
     this.startTimer();
   },
+  isRunning: function() {
+    return this.state.running;
+  },
   handleClick(e) {
     e.preventDefault();
     console.log("clicked", e.target);

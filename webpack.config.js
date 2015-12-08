@@ -1,3 +1,4 @@
+var path = require('path');
 module.exports = {
   entry: {
     bundle: "./public/script.js",
@@ -7,6 +8,11 @@ module.exports = {
   output: {
     path: __dirname + "/public",
     filename: "[name].js"
+  },
+
+  resolve: {
+    root: [path.resolve(__dirname, 'node_modules')],
+    extensions: ['', '.js']
   },
 
   module: {
