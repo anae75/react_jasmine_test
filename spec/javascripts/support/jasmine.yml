@@ -12,7 +12,6 @@
 #
 src_files:
   - public/test_bundle.js
-  - public/bundle.js
 #  - public/javascripts/**/*.js
 
 # stylesheets
