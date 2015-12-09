@@ -12,9 +12,9 @@ let TextBox = React.createClass({
 
   render: function() {
     return (
-       <div>
-       <input value={this.state.name} onChange={this.changeInput.bind(this)} />
-       <div>
+       <div className='input'>
+       <input value={this.state.name} onChange={this.changeInput} />
+       <div className='name'>
          {this.state.name}
        </div>
       </div>
