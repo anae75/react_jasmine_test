@@ -1,5 +1,6 @@
 
-Setup
+------------------------------------------------------------
+Environment setup:
 
 Install Chrome Canary
   React Developer Tools Chrome Extension
@@ -25,7 +26,19 @@ bundle install
 jasmine init (already done and checked in)
 jasmine examples (already done and checked in)
 
-rake jasmine
+------------------------------------------------------------
+
+To run jasmine tests:
+
+  webpack
+  rake jasmine
+  localhost:8888
+
+To run the code:
+
+  webpack
+  nodemon
+  localhost:3000
 
 
 
