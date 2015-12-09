@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 var Timer = require("./timer");
+var TextBox = require("./textbox");
 
 class App extends React.Component {
   constructor(props) {
@@ -8,17 +9,13 @@ class App extends React.Component {
 
     this.state = { 
       timers: [5, 99, 42, 10],
-      name:  'Dragons!'
+      name:  'Vampire Princess Miyu'
       };
   }
   timerContent() {
     return this.state.timers.map((seconds, i) =>
       <Timer startingSeconds={seconds} key={i} />
     );
-  }
-  changeInput(e) {
-    //console.log(e.target.value);
-    this.setState({name: e.target.value});
   }
   render() {
     return (
@@ -27,12 +24,9 @@ class App extends React.Component {
           {this.timerContent()}
         </div>
         <div>
-         <input value={this.state.name} onChange={this.changeInput.bind(this)} />
-         <div>
-           {this.state.name}
-         </div>
+          <TextBox name={this.state.name} />
         </div>
-      </div>
+     </div>
 
     );
   }
