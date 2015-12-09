@@ -10,6 +10,7 @@ var ReactTestUtils = require('react-addons-test-utils');
 describe("AnaTesting", function() {
 
   var Timer = require("../../../public/timer");
+  var TextBox = require("../../../public/textbox");
 
   it("copied from examples should always work", function() {
     var player = new Player();
@@ -43,6 +44,16 @@ describe("AnaTesting", function() {
     component.handleClick(elem);
     expect(component.isRunning()).toEqual(true);
 
+  });
+
+  it("should keep the div and input in sync", function() {
+    var component = ReactTestUtils.renderIntoDocument(<TextBox name={'tinker bell'} />);
+    var domElem = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'name');
+    expect(domElem.textContent).toEqual("tinker bell");
+    
+    var inputElem = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'input');
+    ReactTestUtils.Simulate.change(inputElem, {target: {value: 'panda'}});
+    expect(domElem.textContent).toEqual('panda');
   });
 
 });
