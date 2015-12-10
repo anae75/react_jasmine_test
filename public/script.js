@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 var Timer = require("./timer");
 var TextBox = require("./textbox");
+var AddTimer = require("./addtimer");
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class App extends React.Component {
         </div>
         <div>
           <TextBox name={this.state.name} />
+        </div>
+        <div>
+          <AddTimer />
         </div>
      </div>
 
