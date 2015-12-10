@@ -33,16 +33,21 @@ let Timer = React.createClass({
     //e.preventDefault();
     console.log("clicked", e.target);
     console.log(this.state);
-    this.setState({running:  !this.state.running});
     //this.setState( {remainingSeconds:  0} );
-    if(this.props.removeTimer) {
-      this.props.removeTimer();
+    if(!this.state.running) {
+      if(this.props.removeTimer) {
+        this.props.removeTimer();
+      } else {
+        this.setState({running:  !this.state.running});
+      }
+    } else {
+      this.setState({running:  !this.state.running});
     }
   },
   render: function() {
     return (
       <div onClick={this.handleClick}>
-        {this.state.remainingSeconds}  id={this.props.timerNumber}
+        {this.state.remainingSeconds}  initialValue={this.props.startingSeconds}
       </div>
     );
   }

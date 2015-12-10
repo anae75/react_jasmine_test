@@ -9,7 +9,6 @@ let AddTimer = React.createClass({
   },
 
   componentDidMount: function() {
-    this.numTimers = 0;
   },
 
   changeInput(e) {
@@ -28,7 +27,7 @@ let AddTimer = React.createClass({
   timerListContent() {
     // key disambiguates between new timers and already running timers
     return this.state.timers.map((seconds, i) =>
-      <Timer startingSeconds={seconds} key={i} removeTimer={this.removeTimer.bind(this,i)} timerNumber={i} />
+      <Timer startingSeconds={seconds} key={i} removeTimer={this.removeTimer.bind(this,i)} />
     );
   },
 
@@ -36,7 +35,6 @@ let AddTimer = React.createClass({
     if(this.state.startSeconds) {
       console.log('Creating a new timer: ' + this.state.startSeconds);
       this.setState({timers: this.state.timers.concat(this.state.startSeconds), startSeconds: null});
-      this.numTimers = this.numTimers + 1;
     }
   },
 
