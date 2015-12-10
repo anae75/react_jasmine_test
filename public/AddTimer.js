@@ -21,7 +21,7 @@ let AddTimer = React.createClass({
   handleNewTimerClick: function() {
     if(this.state.startSeconds) {
       console.log('Creating a new timer: ' + this.state.startSeconds);
-      this.setState({timers: this.state.timers.concat(this.state.startSeconds)});
+      this.setState({timers: this.state.timers.concat(this.state.startSeconds), startSeconds: null});
     }
   },
 
@@ -31,7 +31,7 @@ let AddTimer = React.createClass({
          <h2> A timer panel </h2>
 
          <div className='input'>
-         <input placeholder="seconds" onChange={this.changeInput} />
+         <input placeholder="seconds" value={this.state.startSeconds} onChange={this.changeInput} />
          <button onClick={this.handleNewTimerClick}>Add Timer ({this.state.startSeconds})</button>
         </div>
 
