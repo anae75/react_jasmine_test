@@ -23,6 +23,9 @@ let Timer = React.createClass({
   componentDidMount: function() {
     this.startTimer();
   },
+  componentWillUnmount: function() {
+    clearInterval(this.intervalId);
+  },
   isRunning: function() {
     return this.state.running;
   },
@@ -32,11 +35,14 @@ let Timer = React.createClass({
     console.log(this.state);
     this.setState({running:  !this.state.running});
     //this.setState( {remainingSeconds:  0} );
+    if(this.props.removeTimer) {
+      this.props.removeTimer();
+    }
   },
   render: function() {
     return (
       <div onClick={this.handleClick}>
-        {this.state.remainingSeconds}
+        {this.state.remainingSeconds}  id={this.props.timerNumber}
       </div>
     );
   }
