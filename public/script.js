@@ -4,7 +4,7 @@ var Timer = require("./timer");
 var TextBox = require("./textbox");
 var AddTimer = require("./addtimer");
 
-import './timer.css';
+import './stylesheets/timer.css';
 
 class App extends React.Component {
   constructor(props) {
