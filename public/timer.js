@@ -44,9 +44,15 @@ let Timer = React.createClass({
       this.setState({running:  !this.state.running});
     }
   },
+  classNames() {
+    if(this.state.remainingSeconds < 10) {
+      return 'warning';
+    }
+    return '';
+  },
   render: function() {
     return (
-      <div onClick={this.handleClick}>
+      <div onClick={this.handleClick} className={this.classNames()}>
         {this.state.remainingSeconds}  initialValue={this.props.startingSeconds}
       </div>
     );
