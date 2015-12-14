@@ -50,7 +50,7 @@ let AddTimer = React.createClass({
          <h2> A timer panel </h2>
 
          <div className='input'>
-         <input placeholder="seconds" value={this.state.startSeconds} onChange={this.changeInput} />
+         <input type="number" placeholder="seconds" value={this.state.startSeconds} onChange={this.changeInput} />
          <button onClick={this.handleNewTimerClick}>Add Timer ({this.state.startSeconds})</button>
         </div>
 
