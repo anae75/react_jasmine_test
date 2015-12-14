@@ -1,4 +1,6 @@
 import React from "react";
+import './stylesheets/timer.css';
+
 
 let Timer = React.createClass({
   getInitialState: function() {
