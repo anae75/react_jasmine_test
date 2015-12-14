@@ -18,6 +18,8 @@ npm install --save babel-preset-react babel-preset-es2015 express react react-do
 npm install --save babel babel-loader babel-core
 npm install --save  react-addons-test-utils
 
+npm install css-loader style-loader --save-dev
+
 sudo npm install -g jasmine
 
 add jasmine to Gemfile
